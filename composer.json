@@ -12,7 +12,7 @@
     "minimum-stability": "dev",
     "require": {
         "php": ">=7.1.0",
-        "mk-j/PHP_XLSXWriter": ">=0.38"
+        "mk-j/php_xlsxwrite": ">=0.38"
     },
     "autoload": {
         "psr-4": {
