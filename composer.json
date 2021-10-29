@@ -1,0 +1,22 @@
+{
+    "name": "sayhey/sexcel",
+    "description": "sexcel",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "sayhey",
+            "email": "e7git@outlook.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=7.1.0",
+        "mk-j/PHP_XLSXWriter": ">=0.38"
+    },
+    "autoload": {
+        "psr-4": {
+            "Sayhey\\SExcel\\": "src"
+        }
+    }
+}
