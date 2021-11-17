@@ -43,7 +43,7 @@ class Writer
         $publicDir = realpath(self::$config['publicDir']) . DIRECTORY_SEPARATOR;
         $tempDirName = 'sexcel-temp' . DIRECTORY_SEPARATOR;
         $tempDir = $publicDir . $tempDirName;
-        $filename = basename($filename) . '-' . date('YmdHis') . '.xlsx';
+        $filename = basename($filename) . '-' . date('mdHis') . '.xlsx';
 
         // 构建表头
         $header = [];
@@ -77,9 +77,38 @@ class Writer
 
             unset($writer, $rows, $columns, $format, $row);
 
+            // 清理目录
+            self::clear();
+
             return [true, $publicDir . $filename];
         } catch (\Exception $exc) {
             return [false, '导出失败：' . $exc->getMessage()];
+        }
+    }
+
+    /**
+     * 清理文件
+     * @param string $dir excel临时目录
+     * @return void
+     */
+    private static function clear(string $dir): void
+    {
+        if (true !== self::$config['autoClearFile']) {
+            return;
+        }
+        $cacheTime = max(300, intval(self::$config['fileCacheTime']));
+
+        if (!is_dir($dir)) {
+            return;
+        }
+
+        $files = scandir($dir);
+        foreach ($files as $file) {
+            $file = $dir . $file;
+            if ('.xlsx' !== substr($file, -4) || is_dir($file) || !is_file($file) || !is_readable($file) || !filemtime($file) || abs(time() - filemtime($file)) < $cacheTime) {
+                continue;
+            }
+            Util::unlink($file);
         }
     }
 
