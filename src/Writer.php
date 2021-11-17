@@ -78,7 +78,7 @@ class Writer
             unset($writer, $rows, $columns, $format, $row);
 
             // 清理目录
-            self::clear();
+            self::clear($tempDir);
 
             return [true, $publicDir . $filename];
         } catch (\Exception $exc) {
