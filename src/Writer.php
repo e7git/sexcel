@@ -80,7 +80,7 @@ class Writer
             // 清理目录
             self::clear($tempDir);
 
-            return [true, $tempDirName . $filename];
+            return [true, DIRECTORY_SEPARATOR . $tempDirName . $filename];
         } catch (\Exception $exc) {
             return [false, '导出失败：' . $exc->getMessage()];
         }
