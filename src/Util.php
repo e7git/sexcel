@@ -34,7 +34,7 @@ class Util
     public static function unlink(string $file): bool
     {
 
-        if (!self::is_file($file)) {
+        if (!self::isFile($file)) {
             return false;
         }
 
@@ -116,7 +116,7 @@ class Util
      */
     public static function fileIsLatest(string $filename): bool
     {
-        if (!self::is_file($filename) || !is_readable($filename) || !filemtime($filename)) {
+        if (!self::isFile($filename) || !is_readable($filename) || !filemtime($filename)) {
             return false;
         }
 

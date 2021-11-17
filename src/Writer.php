@@ -105,7 +105,7 @@ class Writer
         $files = scandir($dir);
         foreach ($files as $file) {
             $file = $dir . $file;
-            if ('.xlsx' !== substr($file, -4) || is_dir($file) || !is_file($file) || !is_readable($file) || !filemtime($file) || abs(time() - filemtime($file)) < $cacheTime) {
+            if ('.xlsx' !== substr($file, -5) || is_dir($file) || !is_file($file) || !is_readable($file) || !filemtime($file) || abs(time() - filemtime($file)) < $cacheTime) {
                 continue;
             }
             Util::unlink($file);
